@@ -66,9 +66,6 @@ function createWindow(): BrowserWindow {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'));
   }
-  // Set up the application menu
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
 
   return mainWindow;
 }
@@ -118,7 +115,11 @@ app.whenReady().then(async () => {
 
   const mainWindow = createWindow();
 
-  new AppUpdater(mainWindow);
+  const appUpdater = new AppUpdater(mainWindow);
+
+  // Set up the application menu
+  const menuBuilder = new MenuBuilder(mainWindow, appUpdater);
+  menuBuilder.buildMenu();
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
