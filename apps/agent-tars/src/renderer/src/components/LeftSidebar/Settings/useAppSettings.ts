@@ -26,6 +26,7 @@ const DEFAULT_FILESYSTEM_SETTINGS: FileSystemSettings = {
 const DEFAULT_SEARCH_SETTINGS: SearchSettings = {
   provider: SearchProvider.TAVILY,
   apiKey: '',
+  defaultEngine: 'bing',
 };
 
 export const appSettingsAtom = atom<AppSettings>({

@@ -122,16 +122,16 @@ export class BrowserSearch {
     let links = await browser.evaluateOnNewPage({
       url,
       waitForOptions: {
-        waitUntil: 'networkidle0',
+        waitUntil: 'networkidle2',
       },
       pageFunction: searchEngine.extractSearchResults,
       pageFunctionParams: [],
       beforePageLoad: async (page) => {
         await interceptRequest(page);
       },
-      afterPageLoad: async (page) => {
-        await page.waitForSelector('.b_pag');
-      },
+      // afterPageLoad: async (page) => {
+      //   await page.waitForSelector('.b_pag');
+      // },
     });
 
     this.logger.info('Fetched links:', links);

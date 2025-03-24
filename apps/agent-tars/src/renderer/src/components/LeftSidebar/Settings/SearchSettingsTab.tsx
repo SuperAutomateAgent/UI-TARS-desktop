@@ -25,17 +25,18 @@ export function SearchSettingsTab({
         startContent={getSearchProviderLogo(settings.provider)}
       >
         <SelectItem
+          key={SearchProvider.BROWSER_SEARCH}
+          startContent={getSearchProviderLogo(SearchProvider.BROWSER_SEARCH)}
+        >
+          Local Browser Search
+        </SelectItem>
+        <SelectItem
           key={SearchProvider.TAVILY}
           startContent={getSearchProviderLogo(SearchProvider.TAVILY)}
         >
           Tavily Search
         </SelectItem>
-        {/* <SelectItem
-          key={SearchProvider.BROWSER_SEARCH}
-          startContent={getSearchProviderLogo(SearchProvider.BROWSER_SEARCH)}
-        >
-          Browser Search
-        </SelectItem> */}
+
         <SelectItem
           key={SearchProvider.DUCKDUCKGO_SEARCH}
           startContent={getSearchProviderLogo(SearchProvider.DUCKDUCKGO_SEARCH)}
@@ -69,11 +70,12 @@ export function SearchSettingsTab({
       )}
 
       <Divider className="my-2" />
-      {settings.provider === SearchProvider.BING_SEARCH ? (
+      {(settings.provider === SearchProvider.BING_SEARCH ||
+        settings.provider === SearchProvider.BROWSER_SEARCH) && (
         <p className="text-sm text-default-500">Advanced Settings (Optional)</p>
-      ) : null}
+      )}
 
-      {/* {settings.provider === SearchProvider.BROWSER_SEARCH && (
+      {settings.provider === SearchProvider.BROWSER_SEARCH && (
         <Select
           label="Default Search Engine"
           placeholder="Select your default search engine"
@@ -86,8 +88,10 @@ export function SearchSettingsTab({
           }
         >
           <SelectItem key="bing">Bing</SelectItem>
+          <SelectItem key="google">Google</SelectItem>
+          <SelectItem key="baidu">Baidu</SelectItem>
         </Select>
-      )} */}
+      )}
 
       {settings.provider === SearchProvider.BING_SEARCH && (
         <Input
